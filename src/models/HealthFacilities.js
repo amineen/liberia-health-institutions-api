@@ -16,7 +16,7 @@ const HealthFacilitySchema = new mongoose.Schema({
         type:String,
         required:[true, 'Please add facility type'],
         trim:true,
-        maxlength:[10, 'Facility Type must be less than 10 characters']
+        maxlength:[30, 'Facility Type must be less than 30 characters']
     },
     facilityCode:{
         type:String,
@@ -29,7 +29,7 @@ const HealthFacilitySchema = new mongoose.Schema({
         type:String,
         required:[true, 'Please add the facility name'],
         trim:true,
-        maxlength:[40, 'Facility name must be less than 40 characters']
+        maxlength:[80, 'Facility name must be less than 80 characters']
     },
     lmepHealth:{
         type:String,
