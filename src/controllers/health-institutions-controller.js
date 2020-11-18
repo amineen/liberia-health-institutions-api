@@ -34,6 +34,40 @@ exports.getHealthInstitutionsByCounty = async (req, res, next)=>{
     }
 }
 
+//@desc Get all health institutions by facility type from a given county
+//@route GET /api/v1/health-institutions/:county/:facilityType
+//@access Public
+exports.getHealthInstitutionsByTypePerCounty = async (req, res, next)=>{
+    try {
+        const {county, facilityType} = req.params;
+        const facilities = await HealthFacility.find({countyName:county, facilityType: facilityType}).lean();
+        return res.status(200).json({
+            success:true,
+            count:facilities.length,
+            data:facilities
+        });
+    } catch (error) {
+        res.status(500).json({error:'Server error'});
+    }
+}
+
+//@desc Get all health institutions by facility type
+//@route GET /api/v1/health-institutions/types/:facilityType
+//@access Public
+exports.getHealthInstitutionsByType = async (req, res, next)=>{
+    try {
+        const {facilityType} = req.params;
+        const facilities = await HealthFacility.find({facilityType: facilityType}).lean();
+        return res.status(200).json({
+            success:true,
+            count:facilities.length,
+            data:facilities
+        });
+    } catch (error) {
+        res.status(500).json({error:'Server error'});
+    }
+}
+
 //@desc Get all health institutions from a given district
 //@route GET /api/v1/health-institutions/facilities/:district
 //@access Public
