@@ -4,7 +4,7 @@
   "description": "This application provide API endpoints for all health institutions in Liberia",
   "main": "scr/server.js",
   "scripts": {
-    "start": "node scr/server.js",
+    "start": "node src/server.js",
     "dev": "nodemon src/server.js"
   },
   "repository": {
