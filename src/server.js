@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const router = require('./routes/health-institutions-routes');
 const connectDB = require('./config/db');
+const serverless = require('serverless-http');
 
 dotenv.config();
 //Connect to DB
@@ -18,4 +19,7 @@ app.use(cors());
 app.use('/api/v1/health-institutions', router );
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, ()=>console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`));
+app.listen(PORT, ()=>console.log(`Server running in 
+                    ${process.env.NODE_ENV} mode on port ${process.env.PORT}`));
+
+module.exports.handler = serverless(app);

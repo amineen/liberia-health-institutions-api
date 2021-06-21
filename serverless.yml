@@ -1,0 +1,19 @@
+service: lib-health-facilities
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: eu-west-3
+  memorySize: 512
+functions:
+  health-api:
+    handler: src/server.handler
+    events: 
+      - http: 
+          path: /api/v1/health-institutions
+          method: ANY
+          cors: true
+      - http: 
+          path: /{proxy+}
+          method: ANY
+          cors: true
